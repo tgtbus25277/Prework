@@ -9,8 +9,8 @@ const registerRateLimiter = rateLimit({
         sendCommand: (...args) => redis.sendCommand(args),
     }),
     */
-    windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 1000, // limit each IP to 3 requests per window Ms
+    windowMs: 3 * 60 * 1000, // 10 minutes
+    max: 5, // limit each IP to 3 requests per window Ms
     standardHeaders: true,
     legacyHeaders: false,
     message: "Too many accounts created, please try again in 10 minutes"
@@ -21,11 +21,12 @@ const loginRateLimiter = rateLimit({
         sendCommand: (...args) => redis.sendCommand(args),
     }),
     */
-    windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 1000, // limit each IP to 10 requests per window Ms
+    windowMs: 2 * 60 * 1000, // 10 minutes
+    max: 5, // limit each IP to 10 requests per window Ms
     standardHeaders: true,
     legacyHeaders: false,
-    message: "Too many attempt to login, please try again in 10 minutes"
+    message: "Too many at tempt to login, please try again in 10 minutes",
+    keyGenerator: (req) => req.ip
 });
 
 module.exports = {
