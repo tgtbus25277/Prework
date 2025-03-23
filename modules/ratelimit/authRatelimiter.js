@@ -26,7 +26,9 @@ const loginRateLimiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false,
     message: "Too many at tempt to login, please try again in 10 minutes",
-    keyGenerator: (req) => req.ip
+    keyGenerator: (req) => {
+    console.log("Request IP:", req.ip);  // พิมพ์ IP ที่ได้ออกมา
+    return req.ip;
 });
 
 module.exports = {
