@@ -29,6 +29,7 @@ const loginRateLimiter = rateLimit({
     keyGenerator: (req) => {
     console.log("Request IP:", req.ip);  // พิมพ์ IP ที่ได้ออกมา
     return req.ip;
+    }
 });
 
 module.exports = {
